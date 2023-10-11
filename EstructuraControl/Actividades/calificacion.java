@@ -1,3 +1,6 @@
+/*
+Realizado por Jorge Murillo. Este programa te da una calificación dependiendo de la nota sacada.
+*/
 import java.util.Scanner;
 
 public class calificacion {
@@ -10,37 +13,16 @@ public class calificacion {
 
 
         switch ((int)nota){
-            case 0:
+            case 0,1,2,3,4:
                 System.out.println("Suspenso");
                 break;
-            case 1:
-                System.out.println("Suspenso");
-                break;
-            case 2:
-                System.out.println("Suspenso");
-                break;
-            case 3:
-                System.out.println("Suspenso");
-                break;
-            case 4:
-                System.out.println("Suspenso");
-                break;
-            case 5:
+            case 5,6:
                 System.out.println("Suficiente");
                 break;
-            case 6:
-                System.out.println("Suficiente");
-                break;
-            case 7:
+            case 7,8:
                 System.out.println("Notable");
                 break;
-            case 8:
-                System.out.println("Notable");
-                break;
-            case 9:
-                System.out.println("Sobresaliente");
-                break;
-            case 10:
+            case 9,10:
                 System.out.println("Sobresaliente");
                 break;
             default:
