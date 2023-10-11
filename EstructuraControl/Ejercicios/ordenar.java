@@ -5,9 +5,9 @@ public class ordenar {
         float n1;
         float n2;
         float n3;
-        int mayor = 0;
-        int medio = 0;
-        int menor = 0;
+        int mayor ;
+        int medio ;
+        int menor ;
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Dime un número entero: ");
@@ -16,9 +16,11 @@ public class ordenar {
         n2 = sc.nextFloat();
         System.out.print("Dime el último número entero: ");
         n3 = sc.nextFloat();
+        //Compruebo si son iguales alguno de los numeros dados.
         if (n1 == n2 || n2 == n3 || n1 == n3){
             System.out.println("Indroduce datos que no sean iguales.");
         }
+        //Compruebo si todos ellos
         else if (n1 - (int)n1 == 0 && n2 - (int)n2 == 0 && n3 - (int)n3 == 0){
 
             //miro si el número 1 es el mayor.
