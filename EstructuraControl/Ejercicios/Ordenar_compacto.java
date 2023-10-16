@@ -3,12 +3,9 @@ import java.util.Scanner;
 public class Ordenar_compacto {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        float n1;
-        float n2;
-        float n3;
-        int peque;
-        int medio;
-        int mayor;
+        float n1,n2,n3;
+        int peque,medio,mayor;
+        int num1,num2,num3,aux;
 
         System.out.print("Dime un número: ");
         n1 = sc.nextFloat();
@@ -21,7 +18,6 @@ public class Ordenar_compacto {
         }
         else if(n1 - (int)n1 == 0 || n2 - (int)n2 == 0 || n3 - (int)n3 == 0){
 
-            //miro el pequeño
             if(n1 < n2){
                 peque= (int)n1;
                 medio = (int)n2;
@@ -58,11 +54,30 @@ public class Ordenar_compacto {
         else{
             System.out.println("Pon números enteros.");
         }
+
+        //Más compacto aún.
+        System.out.print("Dime un numero:");
+        num1 = sc.nextInt();
+        System.out.print("Dime un numero:");
+        num2 = sc.nextInt();
+        System.out.print("Dime un numero:");
+        num3 = sc.nextInt();
+
+        if(num1 > num2){
+            aux = num1;
+            num1 = num2;
+            num2 = aux;
+        }
+        if(num1 > num3){
+            aux = num1;
+            num1 = num3;
+            num3 = aux;
+        }
+        if(num2 > num3){
+            aux = num2;
+            num2 = num3;
+            num3 = aux;
+        }
+        System.out.printf("%d > %d > %d",num3,num2,num1);
     }
 }
-
-/*
-2   4   6
-  2
-     2
- */
