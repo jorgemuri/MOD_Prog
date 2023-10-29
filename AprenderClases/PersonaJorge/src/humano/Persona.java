@@ -32,6 +32,18 @@ public class Persona {
         return this.peso;
     }
 
+    public String mostrarNombre(){
+        return this.nombre;
+    }
+
+    public float mostrarRecorrido(){
+        return this.recorrido;
+    }
+
+    public float mostrarPeso(){
+        return this.peso;
+    }
+
 
     //FIN DE MÉTODOS
 }
