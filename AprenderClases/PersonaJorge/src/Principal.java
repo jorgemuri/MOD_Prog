@@ -44,7 +44,8 @@ public class Principal {
         /* Muestro los datos de las dos personas */
 
         System.out.println("\nLos datos de la primera persona son: \n Nombre: "+ person.getNombre() + "\n Peso: "+ person.getPeso() + "kg \n Recorrido: "+ person.getRecorrido() + "km \n Edad: "+ person.getEdad() + " años");
-
         System.out.println("\nLos datos de la segunda persona son: \n Nombre: "+ person2.getNombre() + "\n Peso: "+ person2.getPeso() + "kg \n Recorrido: "+ person2.getRecorrido() + "km \n Edad: "+ person2.getEdad() + " años");
+
+        /*Fin de todo*/
     }
 }
