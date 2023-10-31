@@ -12,38 +12,34 @@ public class Persona {
 
     //Fin Atributos
 
-    //MÉTODOS
+    /*MÉTODOS*/
 
-    public String nacer(String nombre){
-        edad = 0;
-        peso = 2.5f;
-        profesion = "Desempleado";
+    public Persona (String nombre){
+        this.edad = 45;
+        this.peso = 75.9f;
+        this.profesion = "Desempleado";
         this.nombre = nombre;
-        return this.nombre;
     }
 
-    public float caminar(float distancia){
-        this.recorrido = this.recorrido + distancia;
-        return this.recorrido;
+    public void caminar(float distancia){
+        this.recorrido += distancia;
     }
 
     public float engordar(float peso){
-        this.peso = this.peso + peso;
+        this.peso += peso;
         return this.peso;
     }
 
-    public String mostrarNombre(){
-        return this.nombre;
-    }
+    /* Métodos para mostrar*/
 
-    public float mostrarRecorrido(){
-        return this.recorrido;
-    }
+    public String getNombre() { return nombre; }
 
-    public float mostrarPeso(){
-        return this.peso;
-    }
+    public float getPeso() { return peso; }
+
+    public float getRecorrido() { return recorrido; }
+
+    public int getEdad() { return this.edad; }
 
 
-    //FIN DE MÉTODOS
+   /* FIN DE MÉTODOS */
 }
