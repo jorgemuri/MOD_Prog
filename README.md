@@ -2,4 +2,6 @@
 
 	BUENAS ESTE ES EL README PARA PROGRAMACIÓN.
 
-Esta es la primera linea.
+
+En este repositorio se encuentran mis prácticas de programació,
+realizadas en java y con IntelliJ IDEA.
