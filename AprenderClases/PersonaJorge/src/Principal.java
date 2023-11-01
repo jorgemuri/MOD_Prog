@@ -1,58 +1,51 @@
-
+/*
+* Autor: Jorge Murillo Carrera
+* En esta práctica, creo dos personas, y les doy unas características que cambio después. */
 
 import humano.Persona;
-
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String nombre = "";
         float distancia;
         float peso;
 
-        Persona person = new Persona();
-        System.out.print("Dime un nombre para un humano: ");
-        nombre = sc.next();
-        System.out.println(person.nacer(nombre));
+        /* Creo la primera persona.*/
 
-        System.out.print("Dime la distancia que va a recorrer: ");
+        Persona person = new Persona("Dani");
+
+        System.out.print("Dime la distancia que va a recorrer la primera persona: ");
         distancia = sc.nextFloat();
-        System.out.println(person.caminar(distancia));
+        person.caminar(distancia);
 
-        System.out.print("Dime el peso que va a aumentar: ");
+        System.out.print("Dime el peso que va a aumentar la primera: ");
         peso = sc.nextFloat();
-        System.out.println(person.engordar(peso));
+        person.engordar(peso);
 
-        Persona person2 = new Persona();
-        System.out.print("Dime un nombre para otro humano: ");
-        nombre = sc.next();
-        System.out.println(person2.nacer(nombre));
+        /*Creo la segunda persona.*/
 
-        System.out.print("Dime la distancia que va a recorrer: ");
+        Persona person2 = new Persona("María");
+
+        System.out.print("Dime la distancia que va a recorrer la segunda persona: ");
         distancia = sc.nextFloat();
-        System.out.println(person2.caminar(distancia));
+        person2.caminar(distancia);
 
-        System.out.print("Dime el peso que va a aumentar: ");
+        System.out.print("Dime el peso que va a aumentar la segunda persona: ");
         peso = sc.nextFloat();
-        System.out.println(person2.engordar(peso));
+        person2.engordar(peso);
 
+        /* Le pido de nuevo cuanto va a recorrer la persona 1 */
 
-        System.out.println("Los datos de la primera persona son: ");
-        System.out.print("El nombre de la primera persona: ");
-        System.out.println(person.mostrarNombre());
-        System.out.print("El peso de la primera persona: ");
-        System.out.println(person.mostrarPeso());
-        System.out.print("El recorrido de la primera persona: ");
-        System.out.println(person.mostrarRecorrido());
+        System.out.print("¿Cuánto va a recorrer de nuevo la primera persona?: ");
+        distancia = sc.nextFloat();
+        person.caminar(distancia);
 
-        System.out.println("Los datos de la segunda persona son: ");
-        System.out.print("El nombre de la segunda persona: ");
-        System.out.println(person2.mostrarNombre());
-        System.out.print("El peso de la segunda persona: ");
-        System.out.println(person2.mostrarPeso());
-        System.out.print("El recorrido de la segunda persona: ");
-        System.out.println(person2.mostrarRecorrido());
+        /* Muestro los datos de las dos personas */
 
+        System.out.println("\nLos datos de la primera persona son: \n Nombre: "+ person.getNombre() + "\n Peso: "+ person.getPeso() + "kg \n Recorrido: "+ person.getRecorrido() + "km \n Edad: "+ person.getEdad() + " años");
+        System.out.println("\nLos datos de la segunda persona son: \n Nombre: "+ person2.getNombre() + "\n Peso: "+ person2.getPeso() + "kg \n Recorrido: "+ person2.getRecorrido() + "km \n Edad: "+ person2.getEdad() + " años");
+
+        /*Fin de todo*/
     }
 }
