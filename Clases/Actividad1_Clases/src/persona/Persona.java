@@ -10,7 +10,22 @@ public class Persona {
 
     /*Métodos*/
 
-    public void Persona(String nombre, String apellidos, String dni, int anioNacimiento){}
+    public Persona(String nombre, String apellidos, String dni, int anioNacimiento){
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.anioNacimiento = anioNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", dni='" + dni + '\'' +
+                ", anioNacimiento=" + anioNacimiento +
+                '}';
+    }
 
     /*Fin métodos*/
 }
