@@ -4,8 +4,9 @@ public class Persona {
 
     /*Propiedades*/
     private String nombre, dni="";
-    private final String cadenaletrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE", apellidos;
-    private int anioNacimiento, edad;
+    private final String apellidos;
+    private int edad;
+    private final int anioNacimiento;
 
     /*Fin propiedades*/
 
@@ -20,13 +21,15 @@ public class Persona {
     }
 
     private void calcularDni(int dni){
+        final String cadenaletrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
         int resto = dni % 23;
         String dni_noletra = Integer.toString(dni);
         this.dni = dni_noletra + cadenaletrasDNI.charAt(resto);
     }
 
     private void calcularEdad(int anioNacimiento){
-        this.edad = 2023 - anioNacimiento;
+        final int anioactual = 2023;
+        this.edad = anioactual - anioNacimiento;
     }
     public void cambiarnombre(String nombre){
         this.nombre = nombre;

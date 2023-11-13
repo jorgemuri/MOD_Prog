@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class principal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         /*Variables*/
         String nombre1= "Pedro";
         String nombre2 = "Luis";
@@ -18,12 +19,9 @@ public class principal {
         System.out.print("Dime el DNI de Luis sin letra: ");
         dni2 = sc.nextInt();
 
-
-
         /*Creo los 2 objetos*/
         Persona p1 = new Persona(nombre1, "Pérez", dni1, anionacimiento1);
         Persona p2 = new Persona(nombre2, "León",dni2, anionacimiento2);
-
 
         /*Compruebo si es mayor de edad, y le doy la opción de cambiar de nombre a los mayores de 18*/
         if (p1.getEdad() < 18){
@@ -52,14 +50,12 @@ public class principal {
                 nombre1 = sc.next();
                 p1.cambiarnombre(nombre1);
             }
-            else{
-                System.out.println("Perfecto");
-            }
+            else System.out.println("Perfecto");
         }
 
         /*Llamo al método toString de cada objeto*/
-        System.out.println(p1.toString());
-        System.out.println(p2.toString());
+        System.out.println(p1); //se llama solo al método toString()
+        System.out.println(p2);
 
     }
 }
