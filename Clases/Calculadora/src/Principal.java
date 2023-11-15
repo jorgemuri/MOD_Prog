@@ -11,33 +11,28 @@ public class Principal {
         Calculadora calculadora = new Calculadora();
         System.out.println(" 1. Sumar \n 2. Restar \n 3. Multiplicar \n 4. Dividir \n 5. Factorial \n 6. Inicializar \n 7. Fin");
 
-        while(num != 7 && num < 7 && num > 0){
+        while(num < 7 && num > 0){
             System.out.println("¿Dime que operación quieres hacer?: ");
             num = sc.nextInt();
-            int n;
             switch (num){
                 case 1:
                     System.out.print("Dime el número para operar con el: ");
-                    n = sc.nextInt();
-                    calculadora.sumar(n);
+                    calculadora.sumar(sc.nextInt());
                     System.out.printf("El resultado es: %d\n", calculadora.getResultado());
                     break;
                 case 2:
                     System.out.print("Dime el número para operar con el: ");
-                    n = sc.nextInt();
-                    calculadora.restar(n);
+                    calculadora.restar(sc.nextInt());
                     System.out.printf("El resultado es: %d\n", calculadora.getResultado());
                     break;
                 case 3:
                     System.out.print("Dime el número para operar con el: ");
-                    n = sc.nextInt();
-                    calculadora.multiplicar(n);
+                    calculadora.multiplicar(sc.nextInt());
                     System.out.printf("El resultado es: %d\n", calculadora.getResultado());
                     break;
                 case 4:
                     System.out.print("Dime el número para operar con el: ");
-                    n = sc.nextInt();
-                    calculadora.dividir(n);
+                    calculadora.dividir(sc.nextInt());
                     System.out.printf("El resultado es: %d\n", calculadora.getResultado());
                     break;
                 case 5:

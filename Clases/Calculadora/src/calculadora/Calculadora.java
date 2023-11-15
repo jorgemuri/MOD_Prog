@@ -11,8 +11,8 @@ public class Calculadora {
 
     public Calculadora() {
     }
-    public Calculadora(int entero) {
-
+    public Calculadora(int operando) {
+        this.resultado = operando;
     }
 
     public int sumar(int n){
@@ -37,12 +37,9 @@ public class Calculadora {
     }
     public void factorial(){
         int i = this.resultado;
-        int aux = i;
         while(i > 1){
             i--;
-            aux = aux * i;
-
-            this.resultado = aux;
+            this.resultado = this.resultado * i;
         }
     }
     public void inicializar(){
@@ -50,9 +47,8 @@ public class Calculadora {
     }
 
     public int getResultado() {
-        return resultado;
+        return this.resultado;
     }
     /* Fin métodos*/
-
 
 }
