@@ -3,10 +3,12 @@ package clases;
 public class Planeta {
     /*Propiedades*/
 
-    private String nombre = "";
-    private int cantidadSatelites, diametro, distanciaSol;
-    private double volumen, masa;
+    final private String nombre;
+    final private int cantidadSatelites, diametro, distanciaSol;
+    private double volumen, masa, densidad;
     private enum tiposplanetas{ENANO, TERRESTRE, GASEOSO}
+    private tiposplanetas tipo;
+    private boolean isExterior = false;
 
     /*Fin propiedades*/
 
@@ -19,9 +21,17 @@ public class Planeta {
        this.diametro = diametro;
        this.distanciaSol = distancia;
 
+       /*Selecciono si es un planeta gaseoso, terrestre...*/
        tipoPlaneta(this.nombre);
+       /*Miro si es exterior o no*/
+       if(esExterior()){
+           this.isExterior = true;
+       }
+       /*Calculo la densidad*/
+       this.densidad = calcularDensidad();
    }
 
+   /*To string*/
     @Override
     public String toString() {
         return "Planeta{" +
@@ -31,6 +41,9 @@ public class Planeta {
                 ", distanciaSol=" + distanciaSol +
                 ", volumen=" + volumen +
                 ", masa=" + masa +
+                ", tipo=" + tipo +
+                ", es exterior =" + isExterior +
+                ", densidad =" + densidad +
                 '}';
     }
 
@@ -46,15 +59,21 @@ public class Planeta {
         }
         else return false;
     }
-    private String tipoPlaneta(String nombre_planeta){
+    private void tipoPlaneta(String nombre_planeta){
        switch (nombre_planeta){
-           case "Tierra":
+           case "Tierra", "Venus", "Marte":
+               this.tipo = tiposplanetas.TERRESTRE;
                break;
-           case "Júpiter":
+           case "Júpiter", "Saturno", "Urano", "Neptuno":
+               this.tipo = tiposplanetas.GASEOSO;
                break;
-           default:break;
+           case "Mercurio":
+               this.tipo = tiposplanetas.ENANO;
+               break;
+           default:
+               System.out.println("has introducido un nombre no válido");
+               break;
        }
-        return null;
     }
     /*Fin métodos*/
 }
