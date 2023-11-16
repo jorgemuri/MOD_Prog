@@ -5,10 +5,9 @@ public class Planeta {
 
     final private String nombre;
     final private int cantidadSatelites, diametro, distanciaSol;
-    private double volumen, masa, densidad;
+    private double volumen, masa;
     private enum tiposplanetas{ENANO, TERRESTRE, GASEOSO}
     private tiposplanetas tipo;
-    private boolean isExterior = false;
 
     /*Fin propiedades*/
 
@@ -23,12 +22,6 @@ public class Planeta {
 
        /*Selecciono si es un planeta gaseoso, terrestre...*/
        tipoPlaneta(this.nombre);
-       /*Miro si es exterior o no*/
-       if(esExterior()){
-           this.isExterior = true;
-       }
-       /*Calculo la densidad*/
-       this.densidad = calcularDensidad();
    }
 
    /*To string*/
@@ -42,8 +35,6 @@ public class Planeta {
                 ", volumen=" + volumen +
                 ", masa=" + masa +
                 ", tipo=" + tipo +
-                ", es exterior =" + isExterior +
-                ", densidad =" + densidad +
                 '}';
     }
 

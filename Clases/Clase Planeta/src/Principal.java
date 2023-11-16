@@ -5,6 +5,10 @@ public class Principal {
         Planeta tierra = new Planeta("Tierra",1, 5.9736E24, 1.08321E1, 12742,149597870);
         Planeta jupiter = new Planeta("Júpiter",95,1.899E27,1.4313E15,142984,778412026);
 
+        if(tierra.esExterior()){
+            System.out.println("La Tierra es exterior");
+        }
+        else System.out.println("La Tierra no es exterior");
         System.out.println(tierra.toString());
         System.out.println(jupiter.toString());
     }
