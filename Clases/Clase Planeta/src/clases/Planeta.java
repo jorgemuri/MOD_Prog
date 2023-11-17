@@ -5,7 +5,7 @@ public class Planeta {
 
     final private String nombre;
     final private int cantidadSatelites, diametro, distanciaSol;
-    private double volumen, masa;
+    final private double volumen, masa;
     private enum tiposplanetas{ENANO, TERRESTRE, GASEOSO}
     private tiposplanetas tipo;
 
@@ -39,8 +39,7 @@ public class Planeta {
     }
 
     public double calcularDensidad(){
-       double densidad =  this.masa / this.volumen;
-       return densidad;
+       return (this.masa / this.volumen);
     }
 
     public boolean esExterior(){
