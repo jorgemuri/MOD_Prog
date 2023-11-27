@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Buscaminas {
     public static void main(String[] args) {
         boolean elegidoBomba = false;
+        Scanner sc = new Scanner(System.in);
 
         /*Crear la matriz*/
         //1 --> bomba 0 --> libre
@@ -10,10 +11,19 @@ public class Buscaminas {
         int mapa_bombas[][] = new int[10][10];
         int coordenadas[] = new int[2];
         String mapa_asteriscos[][] = new String[10][10];
+        int bomba = 0;
+        int probabilidad = 2;
+
+        System.out.print("Dime la probabilidad de bomba (entre 2 y 5): ");
+        probabilidad = sc.nextInt();
 
         for (int i = 0; i < 10; i++){
             for (int j = 0; j < 10; j++){
-                mapa_bombas[i][j] = (int) (Math.random() *2);
+                bomba = (int) (Math.random() *probabilidad);
+                if (bomba != 0 && bomba != 1){
+                    bomba = 0;
+                }
+                mapa_bombas[i][j] = bomba;
                 mapa_asteriscos[i][j] = "*";
                 System.out.printf("%3s",mapa_bombas[i][j]);
             }
