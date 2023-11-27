@@ -12,23 +12,22 @@ public class Sumas {
                 aleatorio = (int) (Math.random() * 100) + 1;
                 matriz[i][j] = aleatorio;
                 suma = suma + matriz[i][j];
-                System.out.print(aleatorio + " ");
+                System.out.printf("%4d",aleatorio);
             }
             System.out.printf("| %d\n", suma);
             sumatotal = sumatotal + suma;
         }
-        for (int i = 0; i < 5; i++){
-            System.out.print("-- ");
-        }
-        System.out.print("\n");
+
+        /*Suma de las columnas*/
+        System.out.print(" ");
         for (int j = 0; j < 5; j++){
             suma = 0;
             for (int i = 0; i < 4; i++){
                 suma = suma + matriz[i][j];
             }
-            System.out.printf("%d ",suma);
+            System.out.printf("%4d",suma);
             sumatotal = sumatotal + suma;
         }
-        System.out.printf("| %d", sumatotal);
+        System.out.printf("| %4d", sumatotal);
     }
 }
