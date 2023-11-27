@@ -14,6 +14,9 @@ public class Estatura {
 
         for (int i = 0; i < 4; i++){
             System.out.printf("%10s ",paises[i]);
+            min = 0;
+            max = 0;
+            media = 0;
             for (int j = 0; j < 10; j++){
                 estaturas[i][j] = (float) (Math.random() * 70) + 140;
                 media = media + estaturas[i][j];
