@@ -85,7 +85,7 @@ public class Buscaminas {
         else {
             for(int fila = i-1; fila <= i+1; fila++ ){
                 for (int columna = j-1; columna <= j+1; columna++){
-                    if (fila <= 10 && fila >=0 && columna<=10 && columna >=0){
+                    if (fila < 10 && fila >=0 && columna< 10 && columna >=0){
                         if (mapabombas[fila][columna] == 1){
                             contador++;
                         }
@@ -96,7 +96,7 @@ public class Buscaminas {
             if (contador == 0){
                 for(int fila = i-1; fila <= i+1; fila++ ) {
                     for (int columna = j - 1; columna <= j + 1; columna++) {
-                        if (fila <= 10 && fila >= 0 && columna <= 10 && columna >= 0) {
+                        if (fila < 10 && fila >= 0 && columna < 10 && columna >= 0) {
                             if (mapaver[fila][columna] == "*"){
                                 mapaver[fila][columna] = "N";
                             }
@@ -123,5 +123,4 @@ public class Buscaminas {
             preguntar(coordenada, mapabombas,mapaver,false);
         }
     }
-    
 }
