@@ -14,7 +14,7 @@ public class Buscaminas {
         int bomba = 0;
         int probabilidad = 2;
 
-        System.out.print("Dime la probabilidad de bomba (entre 2 y 5): ");
+        System.out.print("Dime la probabilidad de bomba (entre 2 y 5, siendo 5 lo más fácil.): ");
         probabilidad = sc.nextInt();
 
         for (int i = 0; i < 10; i++){
@@ -65,16 +65,22 @@ public class Buscaminas {
         coordenadas[0] = posicionFilas;
         coordenadas[1] = posicionColumnas;
 
-        comprobarBomba(coordenadas,mapa_bombas,mapa_asteriscos);
+        comprobarBomba(coordenadas,mapa_bombas,mapa_asteriscos, elegidoBomba);
     }
     /*Compruebo si hay bomba*/
-    private static void comprobarBomba(int coordenada[],int mapabombas[][], String mapaver[][]){
+    private static void comprobarBomba(int coordenada[],int mapabombas[][], String mapaver[][], boolean elegidoBomba){
         int i = coordenada[0];
         int j = coordenada[1];
         int contador = 0;
 
-        if(mapabombas[i][j] == 1){
+        if(mapabombas[i][j] == 1 && elegidoBomba == false){
             System.out.println("Había una bomba, has perdido el juego");
+        }
+        else if(mapabombas[i][j] == 1 && elegidoBomba){
+            if (mapaver[i][j] == "*"){
+                mapaver[i][j] = "B";
+            }
+            preguntar(coordenada, mapabombas,mapaver,false);
         }
         else {
             for(int fila = i-1; fila <= i+1; fila++ ){
@@ -86,11 +92,22 @@ public class Buscaminas {
                     }
                 }
             }
+            /*Si contador = 0 --> muestro las casillas de alrededor*/
+            if (contador == 0){
+                for(int fila = i-1; fila <= i+1; fila++ ) {
+                    for (int columna = j - 1; columna <= j + 1; columna++) {
+                        if (fila <= 10 && fila >= 0 && columna <= 10 && columna >= 0) {
+                            if (mapaver[fila][columna] == "*"){
+                                mapaver[fila][columna] = "N";
+                            }
+                        }
+                    }
+                }
+            }
             String cadena = "" + contador;
             mapaver[i][j] = cadena;
 
             /*Imprimo el nuevo mapa*/
-
 
             System.out.println();
             for(int fila = 0; fila < 10; fila ++){
@@ -106,6 +123,5 @@ public class Buscaminas {
             preguntar(coordenada, mapabombas,mapaver,false);
         }
     }
-
-
+    
 }
