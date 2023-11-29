@@ -6,7 +6,7 @@ public class ConstanteMagica {
         int n = 2, CM = 0;
 
         while(n !=0 ){
-
+            CM = 0;
             n = sc.nextInt();
 
             if (n != 0){
@@ -28,10 +28,10 @@ public class ConstanteMagica {
                 }
                 else {
                     if(esoterico(matriz,n, CM)){
-                        System.out.println("Esoterico");
+                        System.out.println("ESOTERICO");
                     }
                     else {
-                        System.out.println("Diabolico");
+                        System.out.println("DIABOLICO");
                     }
                 }
                 /*for (int i = 0; i < n; i++){
@@ -103,10 +103,10 @@ public class ConstanteMagica {
         int CM2 = (4*CM)/n;
         int mitad = n / 2;
 
-        //miro si hay algun cero
+        //miro si hay algun cero o algún número mayor de n al cuadrado
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
-                if (matriz[i][j] == 0){
+                if (matriz[i][j] < 1 || matriz[i][j] > (n*n)){
                     return false;
                 }
             }
