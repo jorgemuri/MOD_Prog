@@ -17,7 +17,5 @@ public class Pulga {
             System.out.print(F + "\n");
             casos_prueba--;
         }
-
-
     }
 }
