@@ -4,7 +4,7 @@ public class Sumas {
         int aleatorio = 0;
         int suma = 0, sumatotal = 0;
 
-        /*Creo la matriz*/
+        /*Creo la matriz y sumo las filas*/
 
         for (int i = 0; i < 4; i++) {
             suma = 0;
@@ -12,9 +12,9 @@ public class Sumas {
                 aleatorio = (int) (Math.random() * 100) + 1;
                 matriz[i][j] = aleatorio;
                 suma = suma + matriz[i][j];
-                System.out.printf("%4d",aleatorio);
+                System.out.printf("%4d",matriz[i][j]);
             }
-            System.out.printf("| %d\n", suma);
+            System.out.printf(" | %d\n", suma);
             sumatotal = sumatotal + suma;
         }
 
