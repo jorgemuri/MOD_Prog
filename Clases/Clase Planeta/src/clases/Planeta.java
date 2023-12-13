@@ -21,7 +21,20 @@ public class Planeta {
        this.distanciaSol = distancia;
 
        /*Selecciono si es un planeta gaseoso, terrestre...*/
-       tipoPlaneta(this.nombre);
+       switch (this.nombre.toLowerCase()) {
+           case "tierra", "venus", "marte":
+               this.tipo = tiposplanetas.TERRESTRE;
+               break;
+           case "júpiter", "saturno", "urano", "neptuno":
+               this.tipo = tiposplanetas.GASEOSO;
+               break;
+           case "mercurio":
+               this.tipo = tiposplanetas.ENANO;
+               break;
+           default:
+               System.out.println("has introducido un nombre no válido");
+               break;
+       }
    }
 
    /*To string*/
@@ -43,27 +56,11 @@ public class Planeta {
     }
 
     public boolean esExterior(){
-        final double cinturonasteroide =  149597870 ; //km
-        if (this.distanciaSol >cinturonasteroide){
+        double cinturonasteroide = 3.4 * 149597870 ; //km
+        if (this.distanciaSol > (cinturonasteroide)){
             return true;
         }
         else return false;
-    }
-    private void tipoPlaneta(String nombre_planeta){
-       switch (nombre_planeta){
-           case "Tierra", "Venus", "Marte":
-               this.tipo = tiposplanetas.TERRESTRE;
-               break;
-           case "Júpiter", "Saturno", "Urano", "Neptuno":
-               this.tipo = tiposplanetas.GASEOSO;
-               break;
-           case "Mercurio":
-               this.tipo = tiposplanetas.ENANO;
-               break;
-           default:
-               System.out.println("has introducido un nombre no válido");
-               break;
-       }
     }
     /*Fin métodos*/
 }

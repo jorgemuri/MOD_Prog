@@ -6,8 +6,8 @@ public class Principal {
         Planeta jupiter = new Planeta("Júpiter",95,1.899E27,1.4313E15,142984,778412026);
 
 
-        System.out.println("\n" + tierra.toString() + "\n");
-        System.out.println(jupiter.toString() + "\n");
+        System.out.println("\n" + tierra + "\n");
+        System.out.println(jupiter + "\n");
 
         if(tierra.esExterior()){
             System.out.println("La Tierra es exterior\n");
@@ -18,7 +18,8 @@ public class Principal {
         }
         else System.out.println("Júpiter no es exterior\n");
 
-        System.out.println("La densidad de la tierra es: " + tierra.calcularDensidad());
-        System.out.println("La densidad de Júpiter es: " + jupiter.calcularDensidad());
+        /*Dos maneras de mostrar el número más bonito*/
+        System.out.println("La densidad de la tierra es: " + String.format("%.3e",tierra.calcularDensidad()));
+        System.out.printf("La densidad de Júpiter es: %.3e", jupiter.calcularDensidad());
     }
 }
