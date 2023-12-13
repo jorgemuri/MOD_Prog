@@ -38,20 +38,23 @@ public class Mesas {
     }
 
     public void mostrarmesas(){
-        for(int i = 0; i< 10; i++){
-            String columna = "M"+(i+1);
-            System.out.printf("%2s ",columna);
-        }
+        System.out.printf("%13s", "NºMesa: ");
         for (int i = 0; i < 2; i++){
             for (int j = 0; j < mesas.length; j++){
                 if (i == 0){
-                    System.out.print("");
+                    System.out.printf("%2d ", j+1);
+                    if(j == 9){
+                        System.out.println();
+                        System.out.printf("%13s", "NºOcupantes: ");
+                    }
                 }
                 else{
                     System.out.printf("%2d ", mesas[j]);
+                    if (j == 9){
+                        System.out.println();
+                    }
                 }
             }
-            System.out.println();
         }
     }
 }
