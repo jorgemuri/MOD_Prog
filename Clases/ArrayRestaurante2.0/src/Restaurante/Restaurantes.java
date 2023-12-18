@@ -21,7 +21,7 @@ public class Restaurantes {
     //relleno la matriz con el numero de ocupantes aleatorio entre 0 y 4
     private int[] rellenarmatriz(){
         for (int i = 0; i < matriz.length; i++){
-            matriz[i] = (int) (Math.random()*4);
+            matriz[i] = (int) (Math.random()*5);
         }
         return matriz;
     }
