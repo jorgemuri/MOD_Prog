@@ -11,7 +11,9 @@ public class Main {
         String comandos = "";
         boolean salir = false;
         //creo un array de objetos
-        Cuenta cuentas[];
+        Cuenta[] cuentas = new Cuenta[10];
+        int[] arrayNcuentas = new int[10];
+        int N_Cuenta = 0;
 
         while (!salir){
             System.out.println("AYUDA: Para ver los comandos pon HELP");
@@ -23,9 +25,14 @@ public class Main {
                 salir = true;
             } else{
                 if(comandos.equals("AC")){
+                    cuentas[N_Cuenta] = new Cuenta() //sin saldo
 
                 } else if (comandos.equals("ACS")) {
-
+                    //le pido el número de cuenta
+                    System.out.println("Dime el número de la cuenta: ");
+                    int NumeroCuenta = sc.nextInt();
+                    //tengo que añadir el numero de cuenta al array
+                    cuentas[N_Cuenta] = new Cuenta() //con saldo
                 } else if (comandos.equals("CS")) {
 
                 } else if (comandos.equals("ID")) {
