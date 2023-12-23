@@ -45,7 +45,6 @@ public class Principal {
             int n_personas = sc.nextInt();
             //miro si se quiere salir o no
             if(n_personas != -1){
-
                 if (n_personas > 4 || n_personas < 0){
                     System.out.printf("Lo siento, no admitimos grupos de %d, haga grupos de 4 personas como máximo e inténtelo de nuevo", n_personas);
                 }
