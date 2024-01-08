@@ -20,6 +20,9 @@ public class Cuenta {
     public float getSaldo() {
         return Saldo;
     }
+    public int getNCuenta(){
+        return NCuenta;
+    }
 
     public float Ingresar(float importe){
         this.Saldo += importe;
@@ -39,12 +42,10 @@ public class Cuenta {
 
     public boolean esMorosa(){
         if(this.Saldo > 0){
-            //es negatica
-            return  true;
+            return false;
         }
         else {
-            //es positiva
-            return false;
+            return true;
         }
     }
 }
