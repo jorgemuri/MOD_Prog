@@ -82,7 +82,7 @@ public class Main {
                     }
                     case "CS" -> {
                         System.out.printf("Actualmente estás en la cuenta con numero de cuenta %d\n", cuentas[N_Cuenta].getNCuenta());
-                        System.out.printf("Tu saldo es %.2f\n", cuentas[N_Cuenta].getSaldo());
+                        System.out.printf("Tu saldo es %.2f€\n", cuentas[N_Cuenta].getSaldo());
                     }
                     case "ID" -> {
                         System.out.print("Dime el dinero a ingresar: ");
@@ -113,6 +113,12 @@ public class Main {
                         System.out.print("Pon el índice para seleccionar la cuenta: ");
                         N_Cuenta = sc.nextInt();
                     }
+                    case "ST" -> {
+                        System.out.printf("El saldo total del banco es %.2f€\n", Cuenta.getSaldoTotal());
+                    }
+                    case "NCC" -> {
+                        System.out.printf("El número de cuentas creadas en el banco son: %d\n", Cuenta.getTotalCuentas());
+                    }
                     default -> System.out.println("Ese comando no existe. TIP: Escribe en mayúsculas");
                 }
             }
@@ -128,6 +134,8 @@ public class Main {
                 CONSULTAR MOROSIDAD: CM
                 NÚMERO DE LA CUENTA SELECCIONADA: NCS
                 SELECCIONAR CUENTA: SC
+                SALDO TOTAL DEL BANCO: ST
+                NÚMERO DE CUENTAS CREADAS: NCC
                 SALIR: EXIT""");
     }
 }
