@@ -46,10 +46,12 @@ public class Main {
                                 arrayNcuentas[posicionCuenta] = NumeroCuenta;
                                 posicionCuenta++;
                             }
+                            cuentas[N_Cuenta] = new Cuenta(NumeroCuenta); //sin saldo
                         }
-                        cuentas[N_Cuenta] = new Cuenta(NumeroCuenta); //sin saldo
-
-
+                        else {
+                            System.out.println("El número de cuenta ya existe");
+                            N_Cuenta--;
+                        }
                     }
                     case "ACS" -> {
                         N_Cuenta++; //indice que va a ir en el array de objetos

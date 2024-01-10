@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Clases:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Clases_jar</output-path>
+    <root id="archive" name="Clases.jar">
+      <element id="module-output" name="Actividad1_Clases" />
+      <element id="module-output" name="Calculadora" />
+      <element id="module-output" name="HumanoProfesor" />
+      <element id="module-output" name="Clase Planeta" />
+      <element id="module-output" name="PersonaJorge" />
+      <element id="module-output" name="ArrayRestaurante" />
+      <element id="module-output" name="ArrayRestaurante2.0" />
+      <element id="module-output" name="Cuentas" />
+    </root>
+  </artifact>
+</component>
