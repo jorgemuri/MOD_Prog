@@ -15,10 +15,12 @@ public class Main {
         int posicionCuenta = 0;
         float saldo;
 
+        System.out.println("AYUDA: Para ver los comandos pon HELP");
         while (!salir){
+            System.out.print(">>>");
             NcuentaExiste = false;
-            System.out.println("AYUDA: Para ver los comandos pon HELP");
             comandos = sc.next();
+            comandos = comandos.toUpperCase();
             //compruebo si quiere los comandos
             if (comandos.equals("HELP")){
                 mostrarComandos();
@@ -81,13 +83,20 @@ public class Main {
 
                     }
                     case "CS" -> {
-                        System.out.printf("Actualmente estás en la cuenta con numero de cuenta %d\n", cuentas[N_Cuenta].getNCuenta());
-                        System.out.printf("Tu saldo es %.2f€\n", cuentas[N_Cuenta].getSaldo());
+                        if(N_Cuenta >= 0){
+                            System.out.printf("Actualmente estás en la cuenta con numero de cuenta %d\n", cuentas[N_Cuenta].getNCuenta());
+                            System.out.printf("Tu saldo es %.2f€\n", cuentas[N_Cuenta].getSaldo());
+                        }
+                        else {
+                            System.out.println("No tienes ninguna cuenta creada, usa el comando AC o ACS");
+                        }
+                        break;
                     }
                     case "ID" -> {
                         System.out.print("Dime el dinero a ingresar: ");
                         float importe = sc.nextFloat();
                         cuentas[N_Cuenta].Ingresar(importe);
+                        break;
                     }
                     case "RD" -> {
                         System.out.print("Dime el dinero que quieres retirar: ");
@@ -103,23 +112,10 @@ public class Main {
                         }
                     }
                     case "NCS" -> System.out.printf("La cuenta seleccionada es: %d\n", cuentas[N_Cuenta].getNCuenta());
-                    case "SC" -> {
-                        System.out.println("Estas son tus cuentas: ");
-                        for (int i = 0; i < cuentas.length; i++) { //les muestro las cuentas existentes
-                            if (cuentas[i] != null) {
-                                System.out.printf("%d. %d\n", i, cuentas[i].getNCuenta());
-                            }
-                        }
-                        System.out.print("Pon el índice para seleccionar la cuenta: ");
-                        N_Cuenta = sc.nextInt();
-                    }
-                    case "ST" -> {
-                        System.out.printf("El saldo total del banco es %.2f€\n", Cuenta.getSaldoTotal());
-                    }
-                    case "NCC" -> {
-                        System.out.printf("El número de cuentas creadas en el banco son: %d\n", Cuenta.getTotalCuentas());
-                    }
-                    default -> System.out.println("Ese comando no existe. TIP: Escribe en mayúsculas");
+                    case "SC" -> N_Cuenta = seleccioarCuennta(cuentas, sc);
+                    case "ST" -> System.out.printf("El saldo total del banco es %.2f€\n", Cuenta.getSaldoTotal());
+                    case "NCC" -> System.out.printf("El número de cuentas creadas en el banco son: %d\n", Cuenta.getTotalCuentas());
+                    default -> System.out.println("Ese comando no existe. SI necestias ayuda escribe HELP, da igual si escribes en mayúscula o en minúscula");
                 }
             }
         }
@@ -137,5 +133,23 @@ public class Main {
                 SALDO TOTAL DEL BANCO: ST
                 NÚMERO DE CUENTAS CREADAS: NCC
                 SALIR: EXIT""");
+    }
+    private static int seleccioarCuennta(Cuenta[] cuentas, Scanner sc){
+        System.out.println("Estas son tus cuentas: ");
+        for (int i = 0; i < cuentas.length; i++) { //les muestro las cuentas existentes
+            if (cuentas[i] != null) {
+                System.out.printf("%d. %d\n", i, cuentas[i].getNCuenta());
+            }
+        }
+        System.out.print("Pon el índice para seleccionar la cuenta: ");
+        int N_Cuenta = sc.nextInt();
+        if(N_Cuenta >= 0 && N_Cuenta <= 9){//CUIDADO, ES 9 PORQUE ASI LO TENGO PUESTO YO
+            System.out.printf("\nHas seleccionado la cuenta con número de cuenta %d \n", cuentas[N_Cuenta].getNCuenta());
+            return N_Cuenta;
+        }
+        else {
+            System.out.println("\nEse número de cuenta no existe, se ha selecionado la primera cuenta que creaste automaticamente.\n La que tiene el índice 0");
+            return 0;
+        }
     }
 }

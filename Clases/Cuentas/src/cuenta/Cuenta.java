@@ -3,19 +3,12 @@ package cuenta;
 import java.util.Scanner;
 
 public class Cuenta {
-    private int NCuenta;
+    private final int NCuenta;
     private float Saldo;
     private static float SaldoTotal; //Variable estatica para almacenar el saldo todal de todas las cuentas
     private static  int totalCuentas;
 
     //Métodos
-    public static float getSaldoTotal() {
-        return SaldoTotal;
-    }
-
-    public static int getTotalCuentas() {
-        return totalCuentas;
-    }
     public Cuenta(int NCuenta) {
         this.NCuenta = NCuenta;
         Saldo = 0;
@@ -61,5 +54,12 @@ public class Cuenta {
         else {
             return true;
         }
+    }
+    public static float getSaldoTotal() {
+        return SaldoTotal;
+    }
+
+    public static int getTotalCuentas() {
+        return totalCuentas;
     }
 }
