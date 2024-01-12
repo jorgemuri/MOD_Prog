@@ -48,12 +48,7 @@ public class Cuenta {
     }
 
     public boolean esMorosa(){
-        if(this.Saldo > 0){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return (this.Saldo < 0);
     }
     public static float getSaldoTotal() {
         return SaldoTotal;

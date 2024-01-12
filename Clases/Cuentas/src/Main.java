@@ -90,18 +90,13 @@ public class Main {
                         else {
                             System.out.println("No tienes ninguna cuenta creada, usa el comando AC o ACS");
                         }
-                        break;
                     }
-                    case "ID" -> {
-                        System.out.print("Dime el dinero a ingresar: ");
-                        float importe = sc.nextFloat();
-                        cuentas[N_Cuenta].Ingresar(importe);
-                        break;
-                    }
+                    case "ID" -> ingresarDinero(cuentas,sc,N_Cuenta);
                     case "RD" -> {
                         System.out.print("Dime el dinero que quieres retirar: ");
                         float importe = sc.nextFloat();
-                        cuentas[N_Cuenta].Retirar(importe);
+                        saldo = cuentas[N_Cuenta].Retirar(importe);
+                        System.out.printf("Se han retirado correctamente %.2f€\nTu saldo actual son %.2f€\n", importe, saldo);
                     }
                     case "CM" -> {
                         //consultar morosidad
@@ -151,5 +146,12 @@ public class Main {
             System.out.println("\nEse número de cuenta no existe, se ha selecionado la primera cuenta que creaste automaticamente.\n La que tiene el índice 0");
             return 0;
         }
+    }
+    private static void ingresarDinero(Cuenta[] cuentas, Scanner sc, int N_Cuenta){
+        System.out.print("Dime el dinero a ingresar: ");
+        float importe = sc.nextFloat();
+        float saldo = cuentas[N_Cuenta].Ingresar(importe);
+        System.out.printf("Se ha ingresado correctamente %.2f€ \n", importe);
+        System.out.printf("Tu saldo actual es %.2f€\n", saldo);
     }
 }
