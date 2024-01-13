@@ -3,26 +3,35 @@ package cuenta;
 import java.util.Scanner;
 
 public class Cuenta {
-    private int NCuenta;
+    private final int NCuenta;
     private float Saldo;
+    private static float SaldoTotal; //Variable estatica para almacenar el saldo todal de todas las cuentas
+    private static  int totalCuentas;
 
     //Métodos
     public Cuenta(int NCuenta) {
         this.NCuenta = NCuenta;
         Saldo = 0;
+        totalCuentas++;
     }
 
     public Cuenta(int NCuenta, float saldo) {
         this.NCuenta = NCuenta;
         this.Saldo = saldo;
+        SaldoTotal = SaldoTotal + this.Saldo;
+        totalCuentas++;
     }
 
     public float getSaldo() {
         return Saldo;
     }
+    public int getNCuenta(){
+        return NCuenta;
+    }
 
     public float Ingresar(float importe){
         this.Saldo += importe;
+        SaldoTotal = SaldoTotal + importe;
         return this.Saldo;
     }
     public float Retirar(float importe){
@@ -31,6 +40,7 @@ public class Cuenta {
             System.out.println("El saldo te quedaría en números rojos, ¿estás seguro de la operación?\n Pulsa 1 para confirmar.");
             if(sc.nextInt() == 1){
                 this.Saldo -= importe;
+                SaldoTotal = SaldoTotal - importe;
             }
         }
 
@@ -38,13 +48,13 @@ public class Cuenta {
     }
 
     public boolean esMorosa(){
-        if(this.Saldo > 0){
-            //es negatica
-            return  true;
-        }
-        else {
-            //es positiva
-            return false;
-        }
+        return (this.Saldo < 0);
+    }
+    public static float getSaldoTotal() {
+        return SaldoTotal;
+    }
+
+    public static int getTotalCuentas() {
+        return totalCuentas;
     }
 }
