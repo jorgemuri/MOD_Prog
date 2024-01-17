@@ -28,14 +28,19 @@ public class Main {
                     System.out.print("El área de la circunferencia es: " + Circulo.calcularArea(radio) + "\n");
                 }
                 case 3 ->{
-                    System.out.printf("¿Qué círculo quieres elegir? de los %d que has creado?\n", Circulo.getNumCirculos());
-                    for (int i = 0; i < Circulo.getNumCirculos(); i++){
-                        System.out.printf("El circulo numero %d tiene estas propiedades ",i);
-                        System.out.println(circulos[i]);
-                        System.out.println();
+                    if(circulos[0] == null){
+                        System.out.println("\nERROR: DEBES CREAR UN CÍRCULO PRIMERO.\n");
                     }
-                    System.out.print("Elige uno: ");
-                    indice = comprobarDatoEntero(sc) - 1;
+                    else {
+                        System.out.printf("¿Qué círculo quieres elegir? de los %d que has creado?\n", Circulo.getNumCirculos());
+                        for (int i = 0; i < Circulo.getNumCirculos(); i++){
+                            System.out.printf("El circulo numero %d tiene estas propiedades ",i);
+                            System.out.println(circulos[i]);
+                            System.out.println();
+                        }
+                        System.out.print("Elige uno: ");
+                        indice = comprobarDatoEntero(sc) - 1;
+                    }
                 }
                 case 4 ->{
                     if(circulos.length != 0){
