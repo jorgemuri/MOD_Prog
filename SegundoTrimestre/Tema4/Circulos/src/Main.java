@@ -43,7 +43,7 @@ public class Main {
                     }
                 }
                 case 4 ->{
-                    if(circulos.length != 0){
+                    if(circulos[0] != null){
                         System.out.println("Las propiedades de ésta circunferencia son: " + circulos[indice]);
                         System.out.println("""
                                 !
@@ -58,7 +58,7 @@ public class Main {
                         }
                     }
                     else {
-                        System.out.println("Crea un círculo primero.");
+                        System.out.println("\n ERROR: DEBES CREAR UN CÍRCULO PRIMERO.");
                     }
                 }
 
