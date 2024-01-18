@@ -1,12 +1,13 @@
 import estudiantes.Estudiante;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int indice = 0;
-        String nombre;
+        String nombre = "";
         String fechaMatriculacion = "";
         boolean salir = false;
         Estudiante[] estudiantes = new Estudiante[5]; // array donde se guardan los estudiantes/objetos
@@ -21,17 +22,23 @@ public class Main {
             respuesta = respuesta.toUpperCase();
             switch (respuesta){
                 case "AA" -> {
-                    boolean dentro = true;
+                    boolean dentro = true, dentro2 = true;
                     System.out.print("¿Qué nombre tiene el alumno?: "); // pregunto nombre
-                    nombre = sc.next();
+                    while (dentro2){
+                        nombre = sc.nextLine();
+                        if(!Objects.equals(nombre, "")){
+                            dentro2 = false;
+                        }
+                    }
+
                     while (dentro){
-                        System.out.print("¿Cuál es la fecha de matriculación?(00/00/0000): "); // pregunto fecha matriculación
+                        System.out.print("¿Cuál es la fecha de matriculación?(MM/DD/YYYY): "); // pregunto fecha matriculación
                         fechaMatriculacion = sc.next();
                         if(tieneBuenFormato(fechaMatriculacion)){
                             dentro = false;
                         }
                         else {
-                            System.out.println("Escribe con el siguiente formato: 00/00/0000");
+                            System.out.println("Escribe con el siguiente formato: MM/DD/YYYY");
                         }
                     }
                     estudiantes[indice] = new Estudiante(nombre,fechaMatriculacion);
