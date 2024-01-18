@@ -9,9 +9,10 @@ public class Main {
         boolean salir = false;
         int indice_partida = -1, vida1 = 5, vida2 = 5;
         int[] confi; // confihuraciones
-        Partidas[] partidas = new  Partidas[10]; // array de partidas
+        Partidas[] partidas = new  Partidas[5]; // array de partidas
         while (!salir) {
         System.out.println("1. JUGAR\n2. REGLAS\n3. CONFIGURACIÓN\n4. SALIR");
+        System.out.print(">>>");
         int selector = sc.nextInt();
             switch (selector) {
                 case 1 -> {
@@ -27,7 +28,7 @@ public class Main {
                 confi = configuracion(sc);
                 indice_partida++;
                 partidas[indice_partida] = new Partidas(confi[1],confi[0],confi[2],confi[3],confi[4],confi[5]);
-                    System.out.printf("Has configurado la partida %d, cada configuración sera una nueva partida hata un máximo de 10\n", indice_partida);
+                    System.out.printf("Has configurado la partida %d, cada configuración sera una nueva partida hata un máximo de 5\n", indice_partida);
 
                 }
                 case 4 -> {
@@ -57,7 +58,7 @@ public class Main {
                             pues al principio de cada ronda se te muestran las diferentes balas que va a haber en la ronda.
                             Pueden ser de dos tipos, rojas las cuales funcionan, y azules, que nunca llegan a salir disparadas por la escopeta.
                             Una vez se toma la opción de disparar, se acaba tu turno y le toca al oponente, pero en un mismo turno se pueden usar
-                            todos los objetos que se quiera.
+                            todos los objetos que se quiera. (LOS OBJETOS QUE NO SE USEN, LOS PODRÁ UTILIZAR EL CONTRINGANTE)
                             Hay una serie de vidas que al perderlas todas, mueres automaticamente.""");
                     System.out.println("¿Quiéres saber algo más? (s/n)");
                     String respuesta = sc.next();
