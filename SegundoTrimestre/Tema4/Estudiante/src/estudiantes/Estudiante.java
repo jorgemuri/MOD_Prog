@@ -4,16 +4,17 @@ public class Estudiante {
     //atrbutos
     private String nombre, fechaMatriculacion;
     private int numeroExpediente;
-    private static int numeroEstudiantes;
+    private static int numeroEstudiantes, nextNexpediente = 1000;
 
     //fin de atributos
 
 
     //métodos
-    public Estudiante(String nombre, String fechaMatriculacion, int numeroExpediente) {
+    public Estudiante(String nombre, String fechaMatriculacion) {
         this.nombre = nombre;
         this.fechaMatriculacion = fechaMatriculacion;
-        this.numeroExpediente = numeroExpediente;
+        this.numeroExpediente = nextNexpediente;
+        nextNexpediente++;
         numeroEstudiantes++;
     }
     //fin métodos
