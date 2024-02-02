@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("BIENVENIDO AL JUEGO");
         boolean salir = false;
-        int indice_partida = -1, vida1 = 5, vida2 = 5;
+        int indice_partida = -1, vida1 = 4, vida2 = 4;
         int[] confi; // confihuraciones
         Partidas[] partidas = new  Partidas[5]; // array de partidas
         while (!salir) {
@@ -97,7 +97,8 @@ public class Main {
                                 dentro2 = preguntarSaberMas(sc);
                             }
                             case 4 -> {
-                                System.out.println("Cuando usas las esposas, haces que tu oponente pierda un turno");
+                                System.out.println("Cuando usas las esposas, haces que tu oponente pierda un turno." +
+                                        "\nCuidado!!! Si usas esposas y sonsigues doble turno, las esposas no tendran efecto.");
                                 dentro2 = preguntarSaberMas(sc);
                             }
                             case 5 -> dentro2 = false;
@@ -124,17 +125,12 @@ public class Main {
             return true;}
         }
     }
-    private static void jugar(Scanner sc){
-        int ronda; //contador de la ronda actual
-        String turno; //variable que almacena el turno actual
-
-    }
     private static int[] configuracion(Scanner sc){
         int objetos,rondas,lupa,cuchillo,cigarro,esposas;
         String respuesta;
         int[] configuracion = new int[6];
 
-        System.out.print("¿Cuantas rondas quieres que se jueguen?\n AVISO: Cada ronda la juega un solo jugador. Tiene que ser un número par por favor: (8-20)");
+        System.out.print("¿Cuantas rondas quieres que se jueguen?\n(5-10)");
         rondas = sc.nextInt();
         System.out.print("¿Quieres jugar con objetos o sin objetos? (1 -> sí, 2 -> no): ");
         objetos = sc.nextInt(); // almaceno si quiere objetos o no

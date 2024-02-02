@@ -6,7 +6,10 @@ public class Partidas {
     //atributos
 
     private final boolean objetos, lupa, cuchillo, esposas, cigarro; //las configuraciones
-    private boolean tieneLupa, tieneCuchillo, tieneCigarro, tieneEsposas, dobleDamage, usaEsposas;
+    private boolean tieneLupa;
+    private boolean tieneCuchillo;
+    private boolean tieneCigarro;
+    private boolean tieneEsposas;
     private int rondas, Nlupas,Ncuchillo,Nesposas,Ncigarro;
     private static int turno = 2;
 
@@ -23,46 +26,64 @@ public class Partidas {
     }
 
     public void EmpezarPartida(int vidaJugador1, int vidaJugador2){
+        Scanner sc = new Scanner(System.in);
         int[] vidas = new int[3]; // array que guarda las vidas y si se han acabado las vidas
         vidas[0] = vidaJugador1;
         vidas[1] = vidaJugador2;
+        String nombre1, nombre2;
+        //pregunto los nombres de los jugadores
+        System.out.print("Nick del jugador 1 (una única palabra):");
+        nombre1 = sc.next();
+        System.out.print("Nick del jugador 2 (una única palabra):");
+        nombre2 = sc.next();
         // si fuera 1 termina la partida (indica si se le han acabado las vidas a alguno)
         System.out.println("HA EMPEZADO LA PARTIDA. ¡¡¡ SUERTE !!!");
+        int index = 0;
         while (this.rondas>0 && (vidas[2] == 0)){
-            int[] vidasaux = ronda(vidas);
+            index ++;
+            int[] vidasaux = ronda(vidas, nombre1, nombre2);
             System.out.println("------------------------------------------");
-            System.out.println("\nNUEVA RONDA\n");
+            System.out.println("\nNUEVA RONDA: (" + index + ")\n");
             System.out.println("------------------------------------------");
             vidas[0] = vidasaux[0];
             vidas[1] = vidasaux[1];
             vidas[2] = vidasaux[2];
             this.rondas--;
         }
+        if (this.rondas < 0){ // si se ha acabado la partida por fin de rondas
+            if(vidas[0] > vidas[2]){
+                System.out.println("HA GANADO EL JUGADOR 1");
+            }
+            else if (vidas[0] < vidas[1]){
+                System.out.println("HA GANADO EL JUGADOR 2");
+            }
+            else {
+                System.out.println("HABEIS QUEDADO EMPATE, BIEN JUGADO");
+            }
+        }
         System.out.println("LA PARTIDA HA FINALIZADO, GRACIAS POR JUGAR");
     }
 
-    private int[] ronda(int[] vidas){
-        if (this.usaEsposas){ // si usa esposas no se juega la ronda
-            this.usaEsposas = false; // vuelvo a poner la variable a falsa para evitar problemas
-            return vidas;
-        }
+    private int[] ronda(int[] vidas, String nombre1, String nombre2){
         Scanner sc = new Scanner(System.in);
         int[] balas =  anadirBalas(); // posicion 0 --> Balas rojas. Posicion 1 --> balas azules
         int balasRojas = balas[0], balasAzules = balas[1];
         int balasTotales = balasRojas + balasAzules;
-        boolean seJuegaRoja = false;
+        boolean seJuegaRoja;
         int vida1 = vidas[0];
         int vida2 = vidas[1];
         System.out.printf("\n-----> Hay %d balas rojas y %d balas azules\n", balasRojas, balasAzules);
         //bucle de cada turno
         while (balasTotales >0){  // selecciono la bala que se juega
+            boolean usaEsposas = false;
+            boolean dobleDamage = false;
             if(turno % 2 == 0){
-                System.out.println("\nTurno del jugador 1\n");
-                turno++;
+                System.out.println("\nTurno de "+ nombre1 + "\n");
+                System.out.println("Te quedan " + vida1 + " vidas");
             }
             else {
-                System.out.println("\nTurno del jugador 2\n");
-                turno++;
+                System.out.println("\nTurno de " + nombre2 + "\n");
+                System.out.println("Te quedan " + vida2 + " vidas");
             }
             int probabilidadRoja = balasAzules + 1;
 
@@ -130,7 +151,7 @@ public class Partidas {
                                     if(this.Ncuchillo>0){
                                         this.Ncuchillo--;
                                         System.out.println("La escopeta ha sido recortada. (DOBLE DAÑO)");
-                                        this.dobleDamage = true;
+                                        dobleDamage = true;
                                         dentro = usarMasObjetos(sc);
                                     }
                                     else {
@@ -152,8 +173,8 @@ public class Partidas {
                                         }
                                     }
                                     else { // vida para jugador 2
-                                        if(this.Ncuchillo>0){
-                                            this.Ncuchillo--;
+                                        if(this.Ncigarro>0){
+                                            this.Ncigarro--;
                                             vida2++;
                                             System.out.printf("Ahora tienes %d vidas\n", vida2);
                                             dentro = usarMasObjetos(sc);
@@ -166,8 +187,9 @@ public class Partidas {
                                     break;
                                 case 4: // se juega esposa
                                     if (this.Nesposas>0){
+                                        System.out.println("HAS USADO LAS ESPOSAS");
                                         this.Nesposas--;
-                                        this.usaEsposas = true;
+                                        usaEsposas = true;
                                         dentro = usarMasObjetos(sc);
                                     }
                                     else {
@@ -183,48 +205,64 @@ public class Partidas {
                 }
             }
             //momento de disparar
-            System.out.println("¿A quién quiéres disparar?\n" +
-                    "1. Contringante\n" +
-                    "2. A ti mismo");
+            System.out.println("""
+                    ¿A quién quiéres disparar?
+                    1. Contringante
+                    2. A ti mismo""");
             System.out.print(">>>");
-            if(sc.nextInt() == 1){ // disparo al contringante
-                if(seJuegaRoja){ // se juega roja
-                    int damage = 1;
-                    if(dobleDamage){ // miro si la escopeta está recortada
-                        damage = 2;
+            boolean dentro = true;
+            while(dentro){
+                int numero = sc.nextInt(); // para leer la respuesta del jugador
+                if(numero == 1){ // disparo al contringante
+                    dentro = false;
+                    System.out.println("HAS DISPARADO AL CONTRINGANTE");
+                    if(seJuegaRoja){ // se juega roja
+                        int damage = 1;
+                        if(dobleDamage){ // miro si la escopeta está recortada
+                            damage = 2;
+                        }
+                        if(turno % 2 == 0){  // partida del jugador principal
+                            vida2 = vida2 - damage;
+                            System.out.printf("LE HAS DADO. A "+nombre2+" le quedan: %d vidas\n\n", vida2);
+                        }
+                        else { // partida del jugador 2
+                            vida1 = vida1 - damage;
+                            System.out.printf("LE HAS DADO. A " + nombre1 + " le quedan: %d vidas\n\n", vida1);
+                        }
                     }
-                    if(this.rondas % 2 == 0){  // partida del jugador principal
-                        vida2 = vida2 - damage;
-                        System.out.printf("LE HAS DADO. Al enemigo le quedan: %d vidas\n\n", vida2);
-                    }
-                    else { // partida del jugador 2
-                        vida1 = vida1 - damage;
-                        System.out.printf("LE HAS DADO. Al enemigo le quedan: %d vidas\n\n", vida1);
+                    else { // se juega azul
+                        System.out.println("LA BALA ERA AZUL\n");
                     }
                 }
-                else { // se juega azul
-                    System.out.println("LA BALA ERA AZUL\n");
+                else if(numero == 2){ //disparo a ti mismo
+                    dentro = false;
+                    System.out.println("TE HAS DISPARADO A TI MISMO");
+                    if(seJuegaRoja){ // se juega bala roja
+                        System.out.println("PUMMM");
+                        int damage = 1;
+                        if(dobleDamage){ // miro si la escopeta está recortada
+                            damage = 2;
+                        }
+                        if (turno % 2 == 0){ // partida del jugador principal
+                            vida1 = vida1 - damage;
+                            System.out.printf("TE QUEDAN %d vidas\n", vida1);
+                        }
+                        else {  // partida del jugador 2
+                            vida2 = vida2 - damage;
+                            System.out.printf("TE QUEDAN %d vidas\n", vida2);
+                        }
+                    }
+                    else{ // se juega bala azul
+                        System.out.println("LA BALA ERA AZUL\n");
+                        System.out.println("TIENES UN TURNO DOBLE");
+                        turno--; // doble turno
+                    }
+                }
+                else {
+                    System.out.println("ERROR: Escribe el índice válido.");
                 }
             }
-            else{ //disparo a ti mismo
-                if(seJuegaRoja){ // se juega bala roja
-                    int damage = 1;
-                    if(dobleDamage){ // miro si la escopeta está recortada
-                        damage = 2;
-                    }
-                    if (turno % 2 == 0){ // partida del jugador principal
-                        vida1 = vida1 - damage;
-                        System.out.printf("TE QUEDAN %d vidas\n", vida1);
-                    }
-                    else {  // partida del jugador 2
-                        vida2 = vida2 - damage;
-                        System.out.printf("TE QUEDAN %d vidas\n", vida2);
-                    }
-                }
-                else{ // se juega bala azul
-                    System.out.println("LA BALA ERA AZUL");
-                }
-            }
+
             //momento de ver si hay alguno muerto
             if (vida1 < 0){
                 System.out.println("PUMMM  HA GANADO EL JUGADOR 2");
@@ -235,6 +273,10 @@ public class Partidas {
                 vidas[2] = 1;
                 return vidas;
             }
+            if (usaEsposas){
+                turno++;
+            }
+            turno++;
             balasTotales--;
         }
         return vidas;
@@ -243,18 +285,21 @@ public class Partidas {
         int balasRojas = 0;
         int balasAzules = 0;
 
-        for (int i = 0; i < 5; i++){   //añado las balas rojas
+        for (int i = 0; i < 4; i++){  //añado las balas rojas
             if (( 1 == (int) (Math.random()*3))){
                 balasRojas++;
             }
         }
-        if (balasRojas == 0){
+        if (balasRojas == 0){ // si no hay balas rojas, que haya mínimo 1
             balasRojas = 1;
         }
-        for (int i = 0; i < (6 - balasRojas); i++){   //añado las balas azules
+        for (int i = 0; i < (7 - balasRojas); i++){   //añado las balas azules
             if (( 1 == (int) (Math.random()*3))){
                 balasAzules++;
             }
+        }
+        if(balasAzules == 0){ // si no hay balas azules, que haya mínimo una
+            balasAzules =  1;
         }
         int[] balas = new int[2];
         balas[0] = balasRojas;
@@ -262,7 +307,7 @@ public class Partidas {
         return balas;
     }
     private boolean[] darobjetos() {
-        int numeroObjetos = (int) (Math.random() * 4); // numero de objetos que se van a dar (máximo 3)
+        int numeroObjetos = (int) (Math.random() * 3); // numero de objetos que se van a dar (máximo 2)
         for (int i = 0; i < numeroObjetos; i++) {
             int idObejeto = (int) (Math.random() * 5);
             switch (idObejeto) {
@@ -277,8 +322,10 @@ public class Partidas {
                     }
                     break;
                 case 3:
-                    if (this.cigarro && !this.tieneCigarro) { // dar cigarro
-                        this.tieneCigarro = true;
+                    if (1 == (1 + (int) (Math.random() * 2))){
+                        if (this.cigarro && !this.tieneCigarro) { // dar cigarro
+                            this.tieneCigarro = true;
+                        }
                     }
                     break;
                 case 4:
@@ -307,8 +354,7 @@ public class Partidas {
             return false;
         }
     }
+
 }
 
-/*Por ahora ya va la parte importante, solo faltan pulir los objetos,
-(fallo en el cigarro) (hacer las esposas) y cambiar la configuración
-para que funcione sin objetos*/
+/*ARREGLAR PARA QUE SE PUEDA JUGAR SIN OBJETOS*/
