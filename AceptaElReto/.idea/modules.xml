@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/JuegosCintas/JuegosCintas.iml" filepath="$PROJECT_DIR$/JuegosCintas/JuegosCintas.iml" />
       <module fileurl="file://$PROJECT_DIR$/Legionarios/Legionarios.iml" filepath="$PROJECT_DIR$/Legionarios/Legionarios.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pulga/Pulga.iml" filepath="$PROJECT_DIR$/Pulga/Pulga.iml" />
+      <module fileurl="file://$PROJECT_DIR$/calculoDeRiemann/calculoDeRiemann.iml" filepath="$PROJECT_DIR$/calculoDeRiemann/calculoDeRiemann.iml" />
     </modules>
   </component>
 </project>
