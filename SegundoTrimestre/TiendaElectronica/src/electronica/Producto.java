@@ -11,6 +11,7 @@ public abstract class Producto {
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
+        inventario++;
     }
 
     @Override

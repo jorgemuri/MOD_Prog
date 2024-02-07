@@ -74,11 +74,34 @@ public class Main {
                             i++; // incremento el índice para que no haya conflicto
                             break;
                         default:
-                            System.out.println("...");
+                            System.out.println("..."); // no añade ninguno
                             break;
                     }
-                case 2:
-                    System.out.println("Tenemos "+(i + 1) + " productos");
+                    break;
+                case 2: // muestro la cantidad de productos que tenemos
+                    System.out.println("Tenemos "+ Producto.getInventario() + " productos");
+                    break;
+                case 3:
+                    mostrarProductos(productos,i);
+                    break;
+                case 4:
+                    caracteristicasConcretas(productos,i);
+                    break;
+                case 5:
+                    consultarPrecio(productos,i);
+                    break;
+                case 6:
+                    llamarNumero(productos,i);
+                    break;
+                case 7:
+                    cambiarRam(productos,i);
+                    break;
+                case 8:
+                    cambiarCanal(productos,i);
+                    break;
+                default: // por si pone cualquier otro tipo de número
+                    System.out.println("Pon un número válido");
+                    break;
             }
 
         }
@@ -92,7 +115,7 @@ public class Main {
                 1. Añadir un producto
                 2. Numero de productos
                 3. Características de todos los productos
-                4. Características de un producto concreto
+                4. Características de un tipo de producto concreto
                 5. Consultar precio de un producto
                 6. Llamar a un número.
                 7. Cambiar la RAM de un ordenador.
@@ -111,13 +134,14 @@ public class Main {
             }
             catch (InputMismatchException e){
                 System.out.println("ERROR: Mete un número entero");
+                sc.next();
             }
         }
         return numero;
     }
     private static String preguntarString(){
-        Scanner sc = new Scanner(System.in).useDelimiter(";");
-        System.out.println("(TIP: Pon \";\" para terminar.)");
+        Scanner sc = new Scanner(System.in).useDelimiter("\\n");
+        System.out.print(">>>");
         return sc.next();
     }
     private static float preguntarFloat(){
@@ -131,19 +155,127 @@ public class Main {
             }
             catch (InputMismatchException e){
                 System.out.println("ERROR: Mete un número válido. Recuerda que es con ,");
+                sc.next();
             }
         }
         return numero;
     }
     private static int anadirProducto(){
         System.out.println("Que producto quieres añadir?");
+        listarTipos();
+        System.out.print(">>>");
+        return preguntarEntero();
+    }
+    private static void mostrarProductos(Producto[] productos, int numeroObjetos){
+        for (int i = 0; i < numeroObjetos; i++){ // muestro todos los productos
+            System.out.println(i + ". " + productos[i]);
+        }
+    }
+    private static void caracteristicasConcretas(Producto[] productos, int i){
+        System.out.println("¿De qué tipo quieres ver todas sus características? ");
+        listarTipos();
+        System.out.print(">>>");
+        int tipo = preguntarEntero();
+        switch (tipo){
+            case 1:
+                for (int indice = 0; indice < i; indice++){
+                    if(productos[indice].getClass() == Movil.class){ //compruebo si es de tipo movil el objeto
+                        System.out.println(productos[indice]);
+                    }
+                }
+                break;
+            case 2:
+                for (int indice = 0; indice < i; indice++){
+                    if(productos[indice].getClass() == Ordenador.class){ //compruebo si es de tipo Ordenador el objeto
+                        System.out.println(productos[indice]);
+                    }
+                }
+                break;
+            case 3:
+                for (int indice = 0; indice < i; indice++){
+                    if(productos[indice].getClass() == Televisor.class){ //compruebo si es de tipo Televisor el objeto
+                        System.out.println(productos[indice]);
+                    }
+                }
+                break;
+            default:
+                System.out.println("...");
+                break;
+        }
+    }
+    private static void listarTipos(){ //listo los 3 tipos que de productos
         System.out.println("""
+                |||||
                 1. Móvil
                 2. Ordenador
                 3. Televisor
                 4. Volver
+                |||||
                 """);
-        System.out.print(">>>");
-        return preguntarEntero();
+    }
+    private static void consultarPrecio(Producto[] productos, int i){
+        boolean existeProducto = false;
+        System.out.println("Dime la marca del producto: ");
+        String marca = preguntarString();
+        System.out.println("Dime el modelo del producto: ");
+        String modelo = preguntarString();
+        for (int indice = 0; indice < i; indice++){
+            if(((productos[indice].getMarca())).equalsIgnoreCase((marca))){ // veo si hay algún producto que tenga esa marca
+                if(((productos[indice].getModelo())).equalsIgnoreCase((modelo))){ // veo si hay algún producto que tenga ese modelo
+                    existeProducto = true;
+                    System.out.println("Existe: " + productos[indice]);
+                    System.out.printf("El precio del producto es de %.2f\n", (productos[indice].getPrecio() - productos[indice].calcularDescuento()));
+                }
+            }
+        }
+        if(!existeProducto){
+            System.out.println("No existe ningún producto con esas características");
+        }
+
+    }
+    private static void llamarNumero(Producto[] productos, int i){
+        System.out.println("Dime la marca del movil con el que quieres llamar: ");
+        String marca = preguntarString();
+        System.out.println("Dime el modelo del movil con el que quieres llamar: ");
+        String modelo = preguntarString();
+        System.out.println("Dime el numero que quieres llamar");
+        String numero = preguntarString();
+        for (int indice = 0; indice < i; indice++){
+            if(((productos[indice].getMarca())).equalsIgnoreCase((marca))){ // veo si hay algún producto que tenga esa marca
+                if(((productos[indice].getModelo())).equalsIgnoreCase((modelo))){ // veo si hay algún producto que tenga ese modelo
+                    ((Movil) productos[indice]).llamar(numero);
+                }
+            }
+        }
+    }
+    private static void cambiarRam(Producto[] productos, int i){
+        System.out.println("Dime la marca del ordenador con el que quieres llamar: ");
+        String marca = preguntarString();
+        System.out.println("Dime el modelo del ordenador con el que quieres llamar: ");
+        String modelo = preguntarString();
+        System.out.print("Dime la ram que quieres añadir: ");
+        int ramPlus= preguntarEntero();
+        for (int indice = 0; indice < i; indice++){
+            if(((productos[indice].getMarca())).equalsIgnoreCase((marca))){ // veo si hay algún producto que tenga esa marca
+                if(((productos[indice].getModelo())).equalsIgnoreCase((modelo))){ // veo si hay algún producto que tenga ese modelo
+                    ((Ordenador) productos[indice]).ampliarRam(ramPlus);
+                }
+            }
+        }
+    }
+    private static void cambiarCanal(Producto[] productos, int i){
+        System.out.println("Dime la marca del televisor con el que quieres llamar: ");
+        String marca = preguntarString();
+        System.out.println("Dime el modelo del televisor con el que quieres llamar: ");
+        String modelo = preguntarString();
+        System.out.println("¿A que canal quieres cambiar? ");
+        String nuevoCanal = preguntarString();
+        for (int indice = 0; indice < i; indice++){
+            if(((productos[indice].getMarca())).equalsIgnoreCase((marca))){ // veo si hay algún producto que tenga esa marca
+                if(((productos[indice].getModelo())).equalsIgnoreCase((modelo))){ // veo si hay algún producto que tenga ese modelo
+                    ((Televisor) productos[indice]).cambiarCanal(nuevoCanal);
+                }
+            }
+        }
     }
 }
