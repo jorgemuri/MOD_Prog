@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Producto[] productos = new Producto[10]; // creo el array de objetos. Maximo 10
+        Producto[] productos = new Producto[10]; // Creo el array de objetos. Máximo 10
         int respuesta = -1, i = 0;
 
         System.out.println("BIENVENIDO AL PROGRAMA");
@@ -82,22 +82,49 @@ public class Main {
                     System.out.println("Tenemos "+ Producto.getInventario() + " productos");
                     break;
                 case 3:
+                    if(i == 0){
+                        System.out.println("No tenemos productos actualmente.");
+                        break;
+                    }
                     mostrarProductos(productos,i);
                     break;
                 case 4:
+                    if(i == 0){
+                        System.out.println("No tenemos productos actualmente.");
+                        break;
+                    }
                     caracteristicasConcretas(productos,i);
                     break;
                 case 5:
+                    if(i == 0){
+                        System.out.println("No tenemos productos actualmente.");
+                        break;
+                    }
                     consultarPrecio(productos,i);
                     break;
                 case 6:
+                    if(!ComprobarSiHayTipo(productos,i,1)){ // compruebo si hay móviles
+                        System.out.println("No tenemos móviles actualmente.");
+                        break;
+                    }
                     llamarNumero(productos,i);
                     break;
                 case 7:
+                    if(!ComprobarSiHayTipo(productos,i,2)){ // compruebo si hay ordenadores
+                        System.out.println("No tenemos ordenadores actualmente.");
+                        break;
+                    }
                     cambiarRam(productos,i);
                     break;
                 case 8:
+                    if(!ComprobarSiHayTipo(productos, i, 3)){ // compruebo si hay televisores
+                        System.out.println("No tenemos televisores actualmente.");
+                        break;
+                    }
                     cambiarCanal(productos,i);
+                    break;
+                case 0:
+                    System.out.println("Gracias por usar el programa");
                     break;
                 default: // por si pone cualquier otro tipo de número
                     System.out.println("Pon un número válido");
@@ -277,5 +304,28 @@ public class Main {
                 }
             }
         }
+    }
+    private static boolean ComprobarSiHayTipo(Producto[] productos, int i, int tipo){
+        if(tipo == 1){ //si quiero comprobar si existe movil
+            for (int indice = 0; indice < i; indice++){
+                if (productos[indice].getClass() == Movil.class){
+                    return true;
+                }
+            }
+        } else if (tipo == 2) { // si quiero comprobar si existe ordenador
+            for (int indice = 0; indice < i; indice++){
+                if (productos[indice].getClass() == Ordenador.class){
+                    return true;
+                }
+            }
+        }
+        else{ //si quiero comproar si existe tele
+            for (int indice = 0; indice < i; indice++){
+                if (productos[indice].getClass() == Televisor.class){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
