@@ -18,7 +18,7 @@ public class Ordenador extends Producto{
 
     @Override
     public String toString() {
-        return  "Ordenador{" + super.getMarca() + " " + super.getModelo() + " " +
+        return  "Ordenador{" + getMarca() + " " + getModelo() + " " +
                 "procesador='" + procesador + '\'' +
                 ", ram=" + ram +
                 ", hdd=" + hdd +
@@ -28,7 +28,7 @@ public class Ordenador extends Producto{
 
     @Override
     public float calcularDescuento() {
-        return super.getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
+        return getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
     }
     public void ampliarRam(int aumento){
         ram = ram + aumento;

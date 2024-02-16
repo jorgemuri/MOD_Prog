@@ -18,7 +18,7 @@ public class Movil extends Producto{
 
     @Override
     public String toString() {
-        return  "Movil{" + super.getMarca() + " " + super.getModelo() + " " +
+        return  "Movil{" + getMarca() + " " + getModelo() + " " +
                 "procesador='" + procesador + '\'' +
                 ", ram=" + ram +
                 ", pulgadas=" + pulgadas +
@@ -26,7 +26,7 @@ public class Movil extends Producto{
                 '}';
     }
     public float calcularDescuento(){
-        return super.getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
+        return getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
     }
     public void llamar(String numero){
         System.out.println("Marcando...");

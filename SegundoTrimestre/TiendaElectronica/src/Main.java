@@ -1,7 +1,4 @@
-import electronica.Movil;
-import electronica.Ordenador;
-import electronica.Producto;
-import electronica.Televisor;
+import electronica.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -130,9 +127,7 @@ public class Main {
                     System.out.println("Pon un número válido");
                     break;
             }
-
         }
-
     }
     private static void mostrarMenu(){
         System.out.println("------------------------");

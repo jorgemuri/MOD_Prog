@@ -11,13 +11,13 @@ public class Televisor extends Producto{
 
     @Override
     public String toString() {
-        return  "Televisor{" + super.getMarca() + " " + super.getModelo() + " " +
+        return  "Televisor{" + getMarca() + " " + getModelo() + " " +
                 "pulgadas=" + pulgadas +
                 ", DESCUENTO=" + DESCUENTO +
                 '}';
     }
     public float calcularDescuento() {
-        return super.getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
+        return getPrecio() * (DESCUENTO/100f); // devuelvo el total que me van a descontar
     }
     public void cambiarCanal(String canal){
         System.out.println("Has cambiado al canal " + canal);
