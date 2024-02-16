@@ -1,6 +1,7 @@
 package empresa;
 
 public abstract class Empleado {
+
     /*Atributos*/
     private String Nombre;
     private int Edad;

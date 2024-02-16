@@ -2,6 +2,9 @@ import empresa.*;
 import java.util.Scanner;
 
 public class Main {
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String AMARILLO = "\u001B[33m";
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Empleado[] empleados = new Empleado[5]; // array de objetos empleados
@@ -28,13 +31,8 @@ public class Main {
         }
     }
     private static void mostrarMenu(){
-        System.out.println("""
-                1. Añadir un comercial.
-                2. Añadir un repartidor.
-                3. AplicarPlus
-                4. Ver empleados.
-                -1. Salir.
-                """);
+        System.out.println(ROJO + "1. " + VERDE+ "Añadir un comercial\n" + ROJO + "2. " + VERDE + "Añadir un repartidor\n"+
+                ROJO + "3. " + VERDE + "Aplicar plus\n" + ROJO +"4. " + VERDE + "Ver empleados\n" + ROJO + "-1 " + VERDE + "Salir");
     }
     private static void anadirEmpleado(int TipoEmpleado, Empleado[] empleados, int indice){
         Scanner sc = new Scanner(System.in).useDelimiter("\\n");
@@ -110,7 +108,7 @@ public class Main {
         }
         else {
             for(int i = 0; i < Empleado.getnumeroEmpleados();i++){
-                System.out.println(empleados[i]);
+                System.out.println(AMARILLO +empleados[i]);
             }
         }
         System.out.println();
