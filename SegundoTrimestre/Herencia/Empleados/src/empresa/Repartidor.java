@@ -23,6 +23,7 @@ public class Repartidor extends Empleado{
             float salario = getSalario() + getPLUS();
             setSalario(salario);
             System.out.println("Plus aplicado correctamente");
+            System.out.println("El nuevo salario es: " + getSalario());
         }
         else System.out.println("No cumple con los requisitos");
     }

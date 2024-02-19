@@ -76,7 +76,6 @@ public class Main {
                     System.out.print(">>>");
                     int indiceEmpleado = sc.nextInt();
                     empleados[indiceEmpleado].aplicarPlus(); // aplico el plus
-                    System.out.println("El nuevo salario es: " + empleados[indiceEmpleado].getSalario());
                 }
             } else {
                 System.out.println("No hay empleados");
@@ -97,7 +96,6 @@ public class Main {
                 System.out.print(">>>");
                 int indiceEmpleado = sc.nextInt();
                 empleados[indiceEmpleado].aplicarPlus(); // aplico el plus
-                System.out.println("El nuevo salario es: "+empleados[indiceEmpleado].getSalario());
             }
         }
         System.out.println();
