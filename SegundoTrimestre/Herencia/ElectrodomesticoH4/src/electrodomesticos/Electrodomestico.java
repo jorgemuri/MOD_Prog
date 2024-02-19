@@ -5,7 +5,7 @@ public class Electrodomestico {
     private static char[] letrasPosibles = {'A','B','C','D','E','F'};
     private String marca;
     colores color;
-    enum colores {blanco,negro,rojo,azul,gris};
+    public enum colores {blanco,negro,rojo,azul,gris};
     private char consumoEnergetico;
     private float peso, precio;
 
@@ -15,9 +15,10 @@ public class Electrodomestico {
         this.peso = peso;
         this.precio = precio;
         this.color = color;
+        this.consumoEnergetico = comprobarConsumoEnergetico(consumoEnergetico); // compruebo si la letra está bien.
     }
 
-    void precioFinal(){
+    public void precioFinal(){
         //compruebo la letra
         switch (consumoEnergetico){
             case 'A' ->
@@ -51,7 +52,7 @@ public class Electrodomestico {
 
     }
 
-    public char comprobarConsumoEnergetico(char letra){
+    private char comprobarConsumoEnergetico(char letra){
         for (int i = 0; i < letrasPosibles.length; i++){
             if (letrasPosibles[i] == letra){
                 return letra; // Sí encuentra la letra devuelve la letra
@@ -77,5 +78,9 @@ public class Electrodomestico {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public String getMarca() {
+        return marca;
     }
 }
