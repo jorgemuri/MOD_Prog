@@ -11,12 +11,9 @@ public class Main {
     static String amarillo = "\u001B[33m";
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in).useDelimiter("\\n");
         Cuenta[] cuentas = new Cuenta[10];
         int indice = 0;
-        int identificador;
         int[] listaIdentificadores = new int[10];
-        float saldo = 0;
 
         boolean salir = false;
         System.out.println("BIENVENIDO AL PROGRAMA DEL BANCO Y DE LAS CUENTAS");
