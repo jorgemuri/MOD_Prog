@@ -1,8 +1,10 @@
 package electrodomesticos;
-
 public class Lavadora extends Electrodomestico{
+    static String rojo = "\u001B[31m";
+    static String reset = "\u001B[0m";
+
     /*Atibuto*/
-    private float carga;
+    private final float carga;
 
     /*Métodos*/
 
@@ -22,9 +24,9 @@ public class Lavadora extends Electrodomestico{
 
     @Override
     public String toString() {
-        return super.toString() + "\nLavadora{" +
+        return super.toString() + rojo+"\nLavadora{" +
                 "carga=" + carga +
                 ", color=" + color +
-                '}';
+                '}'+reset;
     }
 }

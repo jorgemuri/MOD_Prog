@@ -1,6 +1,8 @@
 package electrodomesticos;
 
 public class Electrodomestico {
+    static String verde = "\u001B[32m";
+    static String reset = "\u001B[0m";
     private static String[] coloresPosibles = {"blanco","negro","rojo","azul","gris"};
     private static char[] letrasPosibles = {'A','B','C','D','E','F'};
     private String marca;
@@ -63,13 +65,13 @@ public class Electrodomestico {
 
     @Override
     public String toString() {
-        return "ELECTRODOMESTICO  [" +
+        return verde+"ELECTRODOMESTICO  [" +
                 "MARCA='" + marca + '\'' +
                 ", CONSUMO ENERGÉTICO='" + consumoEnergetico + '\'' +
                 ", COLOR='" + color + '\'' +
                 ", PESO=" + peso + '\'' +
                 ", PRECIO=" + precio +
-                ']';
+                ']'+reset;
     }
 
     public float getPrecio() {
